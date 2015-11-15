@@ -15,7 +15,37 @@ So far, here is what I have obtained:
   * [Default user defined by context](#default_user)
 
 ## Separated SSH config files
-grouping
+OpenSSH does not have an option to read several config files, or
+including everything inside a given directory; it only reads options,
+either from the command line, from /etc/ssh/ssh_config or ~/.ssh/config.
+
+This is fine, if you have a couple of hosts on your SSHConfig file, but
+if that grows, and you are like me, and have hundreds of hosts, there is
+a need to separate config files, to differentiate for example,
+*Production* from *Development*.
+
+To obtain this, first create a folder inside your ~/.ssh, lets call it
+_configs_; after this, trow your config files inside, using the
+.config extension, and also add a file with the name _default_.
+
+Now here is the fun part! Add the next aliases to your .bashrc (or to
+your .zshrc, if you are with the cool kids):
+
+```
+alias sshconfig="vim ~/.ssh/configs"
+
+alias sshcompile="echo -n >! ~/.ssh/config && cat
+~/.ssh/configs/*.config >> ~/.ssh/config && cat ~/.ssh/configs/default
+>> ~/.ssh/config"
+
+alias ssh="sshcompile && ssh"
+```
+The last line is optional, you can comment it if you want to "compile"
+SSHConfig manually; leave it like this, if you want to "compile"
+SSConfig each time you connect to a host (recommended). _sshconpile_
+alias only cleans the ~/.ssh/config, cats all the .config files inside
+the directory, and lastly it cats the _default_ file to the end of the
+config; this way, you get your SSHConfig file all organized.
 ## PKI Authentication
 authentication without passwords, using strong public/private keys
 ## ControMaster / ControlPath
