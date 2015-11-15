@@ -14,22 +14,22 @@ So far, here is what I have obtained:
   * [Keep Alive](##keep_alive)
   * [Default user defined by context](##default_user)
 
-## [Separated SSH config files](##ssh_config_groups)
+## [Separated SSH config files](https://github.com/mgarces/awesome_sshconfig##ssh_config_groups)
 grouping
-## [PKI Authentication](##pki_auth)
+## [PKI Authentication](https://github.com/mgarces/awesome_sshconfig##pki_auth)
 authentication without passwords, using strong public/private keys
-## [ControMaster / ControlPath](##controlmaster_controlpath)
+## [ControMaster / ControlPath](https://github.com/mgarces/awesome_sshconfig##controlmaster_controlpath)
 reusing connections
-## [Tunnels](##tunnels)
+## [Tunnels](https://github.com/mgarces/awesome_sshconfig##tunnels)
 exposing remote and local ports
-## [SOCKS Proxy](##socks_proxy)
+## [SOCKS Proxy](https://github.com/mgarces/awesome_sshconfig##socks_proxy)
 VPN Browser navigation 
-## [Jump Hosts](##jump_hosts)
+## [Jump Hosts](https://github.com/mgarces/awesome_sshconfig##jump_hosts)
 getting straight to some host, behind firewall
-## [Remote copy](##remote_copy)
+## [Remote copy](https://github.com/mgarces/awesome_sshconfig##remote_copy)
 using pbcopy on remote host
-## [Forward Agent](##forward_agent)
+## [Forward Agent](https://github.com/mgarces/awesome_sshconfig##forward_agent)
 holding your keys to reuse
-## [Keep Alive](##keep_alive)
+## [Keep Alive](https://github.com/mgarces/awesome_sshconfig##keep_alive)
 ..so your conection is not dropped!
-## [Default user defined by context](##default_user)
+## [Default user defined by context](https://github.com/mgarces/awesome_sshconfig##default_user)
