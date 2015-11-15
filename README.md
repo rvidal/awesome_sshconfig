@@ -25,7 +25,7 @@ a need to separate config files, to differentiate for example,
 *Production* from *Development*.
 
 To obtain this, first create a folder inside your ~/.ssh, lets call it
-_configs_; after this, trow your config files inside, using the
+_configs_; after this, throw your config files inside, using the
 .config extension, and also add a file with the name _default_.
 
 Now here is the fun part! Add the next aliases to your .bashrc (or to
