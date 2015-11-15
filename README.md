@@ -3,15 +3,15 @@ A curated list of awesome hacks for [SSH_Config](http://www.openbsd.org/cgi-bin/
 
 So far, here is what I have obtained:
 * [Awesome SSH_Confing](https://github.com/mgarces/awesome_sshconfig)
-  * [Separated SSH config files](#ssh_config_groups)
-  * [PKI Authentication](#pki_auth) 
-  * [ControMaster / ControlPath](#controlmaster_controlpath)
+  * [Separated SSH config files](#separated-ssh-config-files)
+  * [PKI Authentication](#pki-authentication)
+  * [ControMaster / ControlPath](#contromaster--controlpath)
   * [Tunnels](#tunnels) 
-  * [SOCKS Proxy](#socks_proxy)
-  * [Jump Hosts](#jump_hosts)
-  * [Remote copy](#remote_copy)
-  * [Forward Agent](#forward_agent)
-  * [Keep Alive](#keep_alive)
+  * [SOCKS Proxy](#socks-proxy)
+  * [Jump Hosts](#jump-hosts)
+  * [Remote copy](#remote-copy)
+  * [Forward Agent](#forward-agent)
+  * [Keep Alive](#keep-alive)
   * [Default user defined by context](#default_user)
 
 ## Separated SSH config files
