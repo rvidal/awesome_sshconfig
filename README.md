@@ -14,22 +14,22 @@ So far, here is what I have obtained:
   * [Keep Alive](#keep_alive)
   * [Default user defined by context](#default_user)
 
-## [Separated SSH config files](https://github.com/mgarces/awesome_sshconfig##ssh_config_groups)
+## Separated SSH config files
 grouping
-## [PKI Authentication](https://github.com/mgarces/awesome_sshconfig##pki_auth)
+## PKI Authentication
 authentication without passwords, using strong public/private keys
-## [ControMaster / ControlPath](https://github.com/mgarces/awesome_sshconfig##controlmaster_controlpath)
+## ControMaster / ControlPath
 reusing connections
-## [Tunnels](https://github.com/mgarces/awesome_sshconfig##tunnels)
+## Tunnels
 exposing remote and local ports
-## [SOCKS Proxy](https://github.com/mgarces/awesome_sshconfig##socks_proxy)
+## SOCKS Proxy
 VPN Browser navigation 
-## [Jump Hosts](https://github.com/mgarces/awesome_sshconfig##jump_hosts)
+## Jump Hosts
 getting straight to some host, behind firewall
-## [Remote copy](https://github.com/mgarces/awesome_sshconfig##remote_copy)
+## Remote copy
 using pbcopy on remote host
-## [Forward Agent](https://github.com/mgarces/awesome_sshconfig##forward_agent)
+## Forward Agent
 holding your keys to reuse
-## [Keep Alive](https://github.com/mgarces/awesome_sshconfig##keep_alive)
+## Keep Alive
 ..so your conection is not dropped!
-## [Default user defined by context](https://github.com/mgarces/awesome_sshconfig##default_user)
+## Default user defined by context
