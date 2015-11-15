@@ -4,16 +4,21 @@ A curated list of awesome hacks for [SSH_Config](http://www.openbsd.org/cgi-bin/
 So far, here is what I have obtained:
 * [Awesome SSH_Confing](#awesome_sshconfig)
   * [Separated SSH config files](##ssh_config_groups)
-  * [PKI Authentication](#pki_auth) 
-- ControMaster / ControlPath
-- Tunnels 
-- SOCKS Proxy (VPN Browser navigation)
-- Jump Hosts (getting straight to some host, behind firewall)
-- Remote copy (using pbcopy on remote host)
-- Forward Agent (holding your keys to reuse)
-- Keep Alive (so your conntection is not dropped)
-- Default user defined by context
+  * [PKI Authentication](##pki_auth) 
+  * [ControMaster / ControlPath](##controlmaster_controlpath)
+  * [Tunnels](##tunnels) 
+  * [SOCKS Proxy](##socks_proxy)
+- [Jump Hosts](##jump_hosts)
+- [Remote copy](##remote_copy)
+- [Forward Agent](##forward_agent)
+- [Keep Alive](##keep_alive)
+- [Default user defined by context](##default_user)
 
- (grouping)
- (authentication without passwords, using strong public/private keys)
- (reusing connections)
+- (grouping)
+- (authentication without passwords, using strong public/private keys)
+- (reusing connections)
+- (VPN Browser navigation)
+- (getting straight to some host, behind firewall)
+- (using pbcopy on remote host)
+- (holding your keys to reuse)
+- (so your conntection is not dropped)
