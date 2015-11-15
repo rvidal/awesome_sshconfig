@@ -14,11 +14,22 @@ So far, here is what I have obtained:
   * [Keep Alive](##keep_alive)
   * [Default user defined by context](##default_user)
 
-- (grouping)
-- (authentication without passwords, using strong public/private keys)
-- (reusing connections)
-- (VPN Browser navigation)
-- (getting straight to some host, behind firewall)
-- (using pbcopy on remote host)
-- (holding your keys to reuse)
-- (so your conntection is not dropped)
+## [Separated SSH config files](##ssh_config_groups)
+grouping
+## [PKI Authentication](##pki_auth)
+authentication without passwords, using strong public/private keys
+## [ControMaster / ControlPath](##controlmaster_controlpath)
+reusing connections
+## [Tunnels](##tunnels)
+exposing remote and local ports
+## [SOCKS Proxy](##socks_proxy)
+VPN Browser navigation 
+## [Jump Hosts](##jump_hosts)
+getting straight to some host, behind firewall
+## [Remote copy](##remote_copy)
+using pbcopy on remote host
+## [Forward Agent](##forward_agent)
+holding your keys to reuse
+## [Keep Alive](##keep_alive)
+..so your conection is not dropped!
+## [Default user defined by context](##default_user)
