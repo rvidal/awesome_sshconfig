@@ -227,7 +227,79 @@ Note that any option you give to a jumphost, will be set on the final
 destination, for example, a port forwarding; it will no be forwarded
 inside the first jumphost.
 ## Remote copy
-using pbcopy on remote host
+One thing I use a lot on the command line (on MacOS X) is
+[pbcopy](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/pbcopy.1.html).
+If I need to copy the contents of some file, let's say it, a log file, I
+can do:
+```
+cat example.log | pbcopy
+```
+and the contents of _example.log_ will be on my clipboard, ready to be
+pasted somewhere, like in a [Gist](https://gist.github.com/).
+
+This works great, but only on _localhost_, and most of the time I am
+working on remote servers, so it would be great to have __pbcopy__ at my
+hands on those servers; I usally just select with the mouse some text,
+but if the text is very big, I have to copy the file to localhost, and
+use __pbcopy__, or if my user has permissions to access that file, I end
+up doing:
+```
+ssh somehost cat /var/log/example.log | pbcopy
+```
+It works, but, wouldn't be great to be able to pull pbcopy, straight
+where I'm working?
+
+My first aproach to this solution was to do a **RemoteForward** of my
+localhost SSH server port (22), to remote port 55555, and create and alias on the remote
+server (_.bashrc_):
+```
+alias pbcopy='ssh -p55555 localuser@localhost pbcopy'
+```
+This works, because I SSH into my localhost, and run pbcopy, but there
+is a better way to do it, has I found out later; other users needed
+this, and implementend a better way, using the
+[netcat](http://nc110.sourceforge.net/) (nc).
+First, you _daemonize_ a local listener, for example, inside a [_Screen_](https://www.gnu.org/software/screen/)
+```
+while (true); do nc -l 55555 | pbcopy; done
+```
+You still need to RemoteForward something to the remote host, so I just
+put that on the _default_ file (we did that already):
+```
+RemoteForward 55555 127.0.0.1:55555
+```
+Now, we need to define on our remote hosts, a different alias:
+```
+alias pbcopy='nc localhost 55555'
+```
+And thats it! Next time, you are on remote server you can use _pbcopy_
+as you would normally use it on _localhost_.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Forward Agent
 holding your keys to reuse
 ## Keep Alive
