@@ -166,7 +166,66 @@ exposing remote and local ports
 ## SOCKS Proxy
 VPN Browser navigation 
 ## Jump Hosts
-getting straight to some host, behind firewall
+Imagine this scnerio: I use a IPSec VPN connection to my work, and the
+security guys are not very fond for SSH, but I ended up convincing them
+to allow me, at least, to connect to one host, which has access to all
+the other hosts in the network, or, at least some of them; I have
+disallowed passwords, and I'm using a combination of PKI with One Time
+Password (using [Google
+Auth](https://github.com/google/google-authenticator)).
+
+I could go access my servers the usual (newbie) way, in where I access
+the **JUMPHOST** and then I access the required server, example:
+```
+ssh jumphost
+    [myuser@JUMPHOST01 ~]$
+ssh insidehost
+    [myuser@INSIDEHOST01~]$
+```
+This is fun and all, and it works, but it gets boring quick! At least we
+are already using ControlMaster, so we only authenticate the first time
+(remember, here I am using PKI+OTP).
+
+But there is a better, cleaner solution! First, lets create a entry, for
+the **INSIDEHOST01** and for a second host, let's call it
+**INSIDEHOST02**:
+```
+Host insidehost1 j.insidehost1
+  HostName insidehost01.example.com
+
+Host insidehost2 j.insidehost2
+  HostName insidehost02.example.com
+```
+I could setup four different entries for these two hosts, one for the
+normal connectiom, another for using the jump host, but I use a trick,
+where I can specifie multiple names in the **Host** parameter; this way,
+I can create a default entry for the **j.hosts** entry, like we did on the
+__Host *__.
+Just add this inside _default_ config file, or create a _JUMP.config_
+inside the _configs_ directory:
+```
+  Host jumphost
+    HostName jumphost01.example.com
+   
+  Host j.*
+  ProxyCommand ssh jumphost nc -w 120 %h %p
+```
+You can create several different jump hosts, depending on context, and
+you can also jump more then one server, for example, if you need to get
+to _insidehost1_ to reach _insidehost2_, just declare:
+```
+Host insidehost2
+  HostName insidehost02.example.com
+  ProxyCommand ssh j.insidehost1 nc -w 120 %h %p
+```
+This way, you first SSH to JUMPHOST01, then to INSIDEHOST01, and finally
+to INSIDEHOST02, everything automatically. If you are using public key
+authentication, and you already are connected to the first jumphost, you
+will login directly on the final destination.
+
+Note that any option you give to a jumphost, will be set on the final
+destination, for example, a port forwarding; it will no be forwarded
+inside the first jumphost.
 ## Remote copy
 using pbcopy on remote host
 ## Forward Agent
