@@ -158,7 +158,7 @@ on the _default_ config file.
 From now on, each time you reconnect to a host, that you are already
 connected, *ControlMaster* will share the same connection, no matter how
 many times you use this (whick can be a lot, when you are using
-JumpHosts).
+[JumpHosts](#jump-hosts)).
 ## PKI Authentication
 authentication without passwords, using strong public/private keys
 ## Tunnels
