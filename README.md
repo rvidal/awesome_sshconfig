@@ -99,7 +99,6 @@ Host r.*
 # Now you can configure your browser to use
 # localhost:7777 SOCKS5, and your HTTP gateway is the
 # remote server
-
 ```
 I will explain what most of this stuff does in the next sections, for
 now, just notice the __Host *__ declaration; this affects all hosts,
@@ -107,12 +106,9 @@ and its overwritten if you declare it inside a given host or on the
 command line. For example, imagine if you are connecting to a server,
 and the user it's not _myuser_... you either can specify that on the
 command line using:
-
 ```
 ssh anotheruser@remotehost
-
 ```
-
 or you can declare it in a host entry on the _SSHConfig_ file:
 ```
 Host remotehost
