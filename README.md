@@ -183,6 +183,17 @@ Note that any option you give to a jumphost, will be set on the final destinatio
 Using my last scenario, where I need to connect to my work using an IPSec VPN, a need to access internal websites arrises a lot; also, sometimes I need to test some service running on a given port, and back in the days I did the naive approach to make a LocalForward, which works well for one or two ports, but as usual, if this grows, it get's out of control quickly.
 So, what does OpenSSH offer that can help us with this? __DynamicForward__ for the rescue!
 
+Still on my last scenario, the __JUMPHOST01__ host could reach everything inside my network, and DNS also works from that server, so I just have to tweak the __Host__ entry:
+```
+Host jumphost
+  HostName jumphost01.example.com
+  DynamicForward :7777
+```
+Now just configure your system to point to a SOCKS5 proxy, on localhost:7777 and you are good to go! I usually use [Firefox](https://www.mozilla.org), because it allows me to configure proxy settings separated from the system.
+By now, any request you make to the browser, will effectively go through that host, even if it is a site with a different port, other then HTTP(80) or HTTPS(443).
+
+Yep, this is amazing, i know! :)
+
 ## Remote copy
 One thing I use a lot on the command line (on MacOS X) is [pbcopy](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/pbcopy.1.html). If I need to copy the contents of some file, let's say it, a log file, I can do:
 
