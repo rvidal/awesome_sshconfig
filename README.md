@@ -4,6 +4,7 @@ A curated list of awesome hacks for [SSH_Config](http://www.openbsd.org/cgi-bin/
 So far, here is what I have obtained:
 * [Awesome SSHConfig](https://github.com/mgarces/awesome_sshconfig)
   * [Separated SSH config files](#separated-ssh-config-files)
+  * [A sane *default* config file](#default-config-file)
   * [PKI Authentication](#pki-authentication)
   * [ControMaster / ControlPath](#contromaster--controlpath)
   * [Tunnels](#tunnels) 
@@ -45,6 +46,8 @@ SSConfig each time you connect to a host (recommended). _sshcompile_
 cleans the ~/.ssh/config, concatenates all the *.config* files inside
 the directory, and lastly, concatenates the _default_ file to the end of the
 config; this way, you get your SSHConfig file all organized.
+
+## A sane *default* config file
 ## PKI Authentication
 authentication without passwords, using strong public/private keys
 ## ControMaster / ControlPath
