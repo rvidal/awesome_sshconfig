@@ -1,33 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Awesome sshconfig by mgarces</title>
+    <meta name="description" content="Awesome SSConfig : My collection of hacks for SSHConfig">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Awesome SSConfig</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Awesome sshconfig</h1>
-        <p>My collection of hacks for SSHConfig</p>
 
-        <p class="view"><a href="https://github.com/mgarces/awesome_sshconfig">View the Project on GitHub <small>mgarces/awesome_sshconfig</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mgarces/awesome_sshconfig">View on GitHub</a>
 
+          <h1 id="project_title">Awesome SSConfig</h1>
+          <h2 id="project_tagline">My collection of hacks for SSHConfig</h2>
 
-        <ul>
-          <li><a href="https://github.com/mgarces/awesome_sshconfig/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/mgarces/awesome_sshconfig/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/mgarces/awesome_sshconfig">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mgarces/awesome_sshconfig/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mgarces/awesome_sshconfig/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a id="awesome-sshconfig" class="anchor" href="#awesome-sshconfig" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/mgarces/awesome_sshconfig">Awesome <em>SSHConfig</em></a>
 </h1>
@@ -37,23 +40,17 @@
 <p>So far, here is what I have obtained:</p>
 
 <ul>
-<li>
-<a href="https://github.com/mgarces/awesome_sshconfig">Awesome <em>SSHConfig</em></a>
-
-<ul>
 <li><a href="#separated-ssh-config-files">Separated SSH config files</a></li>
 <li><a href="#a-sane-default-config-file">A sane <em>default</em> config file</a></li>
 <li><a href="#contromaster--controlpath">ControMaster / ControlPath</a></li>
 <li><a href="#pki-authentication">PKI Authentication</a></li>
 <li><a href="#tunnels">Tunnels</a></li>
-<li><a href="#socks-proxy">SOCKS Proxy</a></li>
 <li><a href="#jump-hosts">Jump Hosts</a></li>
+<li><a href="#socks-proxy">SOCKS Proxy</a></li>
 <li><a href="#remote-copy">Remote copy</a></li>
 <li><a href="#forward-agent">Forward Agent</a></li>
 <li><a href="#keep-alive">Keep Alive</a></li>
 <li><a href="#default_user">Default user defined by context</a></li>
-</ul>
-</li>
 </ul>
 
 <h2>
@@ -180,11 +177,6 @@ listening.
 <p>exposing remote and local ports</p>
 
 <h2>
-<a id="socks-proxy" class="anchor" href="#socks-proxy" aria-hidden="true"><span class="octicon octicon-link"></span></a>SOCKS Proxy</h2>
-
-<p>VPN Browser navigation</p>
-
-<h2>
 <a id="jump-hosts" class="anchor" href="#jump-hosts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Jump Hosts</h2>
 
 <p>Imagine this scenario: I use a IPSec VPN connection to my work, and the security guys are not very fond for SSH, but I ended up convincing them to allow me, at least, to connect to one host, which has access to all the other hosts in the network, or, at least some of them; I have disallowed passwords, and I'm using a combination of PKI with One Time Password (using <a href="https://github.com/google/google-authenticator">Google Auth</a>).</p>
@@ -227,6 +219,12 @@ Host insidehost2 j.insidehost2
 <p>This way, you first SSH to JUMPHOST01, then to INSIDEHOST01, and finally to INSIDEHOST02, everything automatically. If you are using public key authentication, and you already are connected to the first jumphost, you will login directly on the final destination.</p>
 
 <p>Note that any option you give to a jumphost, will be set on the final destination, for example, a port forwarding; it will no be forwarded inside the first jumphost.</p>
+
+<h2>
+<a id="socks-proxy" class="anchor" href="#socks-proxy" aria-hidden="true"><span class="octicon octicon-link"></span></a>SOCKS Proxy</h2>
+
+<p>Using my last scenario, where I need to connect to my work using an IPSec VPN, a need to access internal websites arrises a lot; also, sometimes I need to test some service running on a given port, and back in the days I did the naive approach to make a LocalForward, which works well for one or two ports, but as usual, if this grows, it get's out of control quickly.
+So, what does OpenSSH offer that can help us with this? <strong>DynamicForward</strong> for the rescue!</p>
 
 <h2>
 <a id="remote-copy" class="anchor" href="#remote-copy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remote copy</h2>
@@ -297,12 +295,17 @@ Host insidehost2 j.insidehost2
 <h2>
 <a id="default-user-defined-by-context" class="anchor" href="#default-user-defined-by-context" aria-hidden="true"><span class="octicon octicon-link"></span></a>Default user defined by context</h2>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/mgarces">mgarces</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Awesome SSConfig maintained by <a href="https://github.com/mgarces">mgarces</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
