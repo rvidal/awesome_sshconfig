@@ -127,9 +127,9 @@ connection to the server. Each time you connect to a remote server, you
 end up creating a new connection and socket, and depending on the size
 and security of your keys, or if you are using password authentication
 (shame on you), it get's a little anoying to wait those seconds for the
-connectio, or having to type, over and over again a password. Also, as
+connection, or having to type, over and over again a password. Also, as
 we explain further down this document, when using Jump Hosts, if you do
-not have ControlMaster on, you will have to authenticate each time on
+not have *ControlMaster* on, you will have to authenticate each time on
 the _server-in-the-middle_ for your remote server; I can not emphasize
 how much boring this is.
 _SSHConfig_ manual pages tell us this:
@@ -150,9 +150,13 @@ listening.
 I recommend creating a _tmp_ directory inside _~/.ssh/_ and store
 everything related to _ControlMaster/ControlPath_ inside, like is noted
 on the _default_ config file.
+```
+  ControlMaster auto
+  ControlPath ~/.ssh/tmp/%r@%h:%p
+```
 
 From now on, each time you reconnect to a host, that you are already
-connected, ControlMaster will share the same connection, no matter how
+connected, *ControlMaster* will share the same connection, no matter how
 many times you use this (whick can be a lot, when you are using
 JumpHosts).
 ## PKI Authentication
