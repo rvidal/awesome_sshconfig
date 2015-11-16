@@ -5,8 +5,8 @@ So far, here is what I have obtained:
 * [Awesome *SSHConfig*](https://github.com/mgarces/awesome_sshconfig)
   * [Separated SSH config files](#separated-ssh-config-files)
   * [A sane *default* config file](#a-sane-default-config-file)
-  * [PKI Authentication](#pki-authentication)
   * [ControMaster / ControlPath](#contromaster--controlpath)
+  * [PKI Authentication](#pki-authentication)
   * [Tunnels](#tunnels) 
   * [SOCKS Proxy](#socks-proxy)
   * [Jump Hosts](#jump-hosts)
@@ -118,12 +118,45 @@ Host remotehost
 
 The default it's just that, something to fall back if you don't specify
 it.
+## ControMaster / ControlPath
+During a normal work day, you might connect to a lot of systems, and use
+public/private key authentication; this is fine, but most of the times,
+even though we have tools like *screen* that allow us to have multiple
+terminals on the remote server, it's way faster to just open a new
+connection to the server. Each time you connect to a remote server, you
+end up creating a new connection and socket, and depending on the size
+and security of your keys, or if you are using password authentication
+(shame on you), it get's a little anoying to wait those seconds for the
+connectio, or having to type, over and over again a password. Also, as
+we explain further down this document, when using Jump Hosts, if you do
+not have ControlMaster on, you will have to authenticate each time on
+the _server-in-the-middle_ for your remote server; I can not emphasize
+how much boring this is.
+_SSHConfig_ manual pages tell us this:
+```
+ControlMaster
 
+             Enables the sharing of multiple sessions over a single
+network connection.  When set to ``yes'', ssh(1) will listen for
+connections on a control socket specified using the ControlPath
+argument.  Additional sessions can connect to
+             this socket using the same ControlPath with ControlMaster
+set to ``no'' (the default).  These sessions will try to reuse the
+master instance's network connection rather than initiating new ones,
+but will fall back to connecting
+             normally if the control socket does not exist, or is not
+listening.
+```
+I recommend creating a _tmp_ directory inside _~/.ssh/_ and store
+everything related to _ControlMaster/ControlPath_ inside, like is noted
+on the _default_ config file.
 
+From now on, each time you reconnect to a host, that you are already
+connected, ControlMaster will share the same connection, no matter how
+many times you use this (whick can be a lot, when you are using
+JumpHosts).
 ## PKI Authentication
 authentication without passwords, using strong public/private keys
-## ControMaster / ControlPath
-reusing connections
 ## Tunnels
 exposing remote and local ports
 ## SOCKS Proxy
