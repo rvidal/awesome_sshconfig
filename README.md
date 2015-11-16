@@ -166,7 +166,7 @@ exposing remote and local ports
 ## SOCKS Proxy
 VPN Browser navigation 
 ## Jump Hosts
-Imagine this scnerio: I use a IPSec VPN connection to my work, and the
+Imagine this scenario: I use a IPSec VPN connection to my work, and the
 security guys are not very fond for SSH, but I ended up convincing them
 to allow me, at least, to connect to one host, which has access to all
 the other hosts in the network, or, at least some of them; I have
@@ -174,7 +174,7 @@ disallowed passwords, and I'm using a combination of PKI with One Time
 Password (using [Google
 Auth](https://github.com/google/google-authenticator)).
 
-I could go access my servers the usual (newbie) way, in where I access
+I could access my servers the usual (newbie) way, in where I access
 the **JUMPHOST** and then I access the required server, example:
 ```
 ssh jumphost
@@ -197,8 +197,8 @@ Host insidehost2 j.insidehost2
   HostName insidehost02.example.com
 ```
 I could setup four different entries for these two hosts, one for the
-normal connectiom, another for using the jump host, but I use a trick,
-where I can specifie multiple names in the **Host** parameter; this way,
+normal connection, another for using the jump host, but I use a trick,
+where I can specifie multiple alias in the **Host** parameter; this way,
 I can create a default entry for the **j.hosts** entry, like we did on the
 __Host *__.
 Just add this inside _default_ config file, or create a _JUMP.config_
