@@ -33,7 +33,7 @@ alias sshcompile="echo -n >! ~/.ssh/config && cat
 alias ssh="sshcompile && ssh"
 ```
 
-The last line is optional, you can comment it if you want to "compile" _SSHConfig_ manually; leave it like this, if you want to "compile" SSConfig each time you connect to a host (recommended). _sshcompile_ cleans the ~/.ssh/config, concatenates all the _.config_ files inside the directory, and lastly, concatenates the _default_ file to the end of the config; this way, you get your _SSHConfig_ file all organized.
+The last line is optional, you can comment it if you want to "compile" _SSHConfig_ manually; leave it like this, if you want to "compile" SSHConfig each time you connect to a host (recommended). _sshcompile_ cleans the ~/.ssh/config, concatenates all the _.config_ files inside the directory, and lastly, concatenates the _default_ file to the end of the config; this way, you get your _SSHConfig_ file all organized.
 
 ## A sane *default* config file
 A good place to start with your **SSHConfig** is to setup a global default file, which will be added at the end of the final config file. I usually set all the sane defaults there, and also give some examples in the form of commentaries, for future generations :). I have provided a good base in the _configs_ directory, so you can start using it right away.
