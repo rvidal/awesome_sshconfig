@@ -189,8 +189,8 @@ Host jumphost
   HostName jumphost01.example.com
   DynamicForward :7777
 ```
-Now just configure your system to point to a SOCKS5 proxy, on localhost:7777 and you are good to go! I usually use [Firefox](https://www.mozilla.org), because it allows me to configure proxy settings separated from the system.
-By now, any request you make to the browser, will effectively go through that host, even if it is a site with a different port, other then HTTP(80) or HTTPS(443).
+Now just configure your system to point to a [_SOCKS5_](https://en.wikipedia.org/wiki/SOCKS) proxy, on _localhost:7777_ and you are good to go! I usually use [Firefox](https://www.mozilla.org), because it allows me to configure proxy settings separated from the system.
+By now, any request you make to the browser, will effectively go through that host, even if it is a site with a different port, other then _HTTP_(80) or _HTTPS_(443).
 
 Yep, this is amazing, i know! :)
 
