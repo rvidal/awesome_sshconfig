@@ -2,18 +2,17 @@
 A curated list of awesome hacks for [SSH_Config](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config); for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to addapt this to Linux.
 
 So far, here is what I have obtained:
-- [Awesome _SSHConfig_](https://github.com/mgarces/awesome_sshconfig)
-  - [Separated SSH config files](#separated-ssh-config-files)
-  - [A sane _default_ config file](#a-sane-default-config-file)
-  - [ControMaster / ControlPath](#contromaster--controlpath)
-  - [PKI Authentication](#pki-authentication)
-  - [Tunnels](#tunnels)
-  - [SOCKS Proxy](#socks-proxy)
-  - [Jump Hosts](#jump-hosts)
-  - [Remote copy](#remote-copy)
-  - [Forward Agent](#forward-agent)
-  - [Keep Alive](#keep-alive)
-  - [Default user defined by context](#default_user)
+- [Separated SSH config files](#separated-ssh-config-files)
+- [A sane _default_ config file](#a-sane-default-config-file)
+- [ControMaster / ControlPath](#contromaster--controlpath)
+- [PKI Authentication](#pki-authentication)
+- [Tunnels](#tunnels)
+- [Jump Hosts](#jump-hosts)
+- [SOCKS Proxy](#socks-proxy)
+- [Remote copy](#remote-copy)
+- [Forward Agent](#forward-agent)
+- [Keep Alive](#keep-alive)
+- [Default user defined by context](#default_user)
 
 ## Separated SSH config files
 OpenSSH does not have an option to read several config files, or including everything inside a given directory; it only reads options, either from the command line, from _/etc/ssh/ssh_config_ or _~/.ssh/config_.
@@ -134,9 +133,6 @@ authentication without passwords, using strong public/private keys
 ## Tunnels
 exposing remote and local ports
 
-## SOCKS Proxy
-VPN Browser navigation
-
 ## Jump Hosts
 Imagine this scenario: I use a IPSec VPN connection to my work, and the security guys are not very fond for SSH, but I ended up convincing them to allow me, at least, to connect to one host, which has access to all the other hosts in the network, or, at least some of them; I have disallowed passwords, and I'm using a combination of PKI with One Time Password (using [Google Auth](https://github.com/google/google-authenticator)).
 
@@ -182,6 +178,10 @@ Host insidehost2
 This way, you first SSH to JUMPHOST01, then to INSIDEHOST01, and finally to INSIDEHOST02, everything automatically. If you are using public key authentication, and you already are connected to the first jumphost, you will login directly on the final destination.
 
 Note that any option you give to a jumphost, will be set on the final destination, for example, a port forwarding; it will no be forwarded inside the first jumphost.
+
+## SOCKS Proxy
+Using my last scenario, where I need to connect to my work using an IPSec VPN, a need to access internal websites arrises a lot; also, sometimes I need to test some service running on a given port, and back in the days I did the naive approach to make a LocalForward, which works well for one or two ports, but as usual, if this grows, it get's out of control quickly.
+So, what does OpenSSH offer that can help us with this? __DynamicForward__ for the rescue!
 
 ## Remote copy
 One thing I use a lot on the command line (on MacOS X) is [pbcopy](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/pbcopy.1.html). If I need to copy the contents of some file, let's say it, a log file, I can do:
