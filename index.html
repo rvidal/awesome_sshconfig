@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Awesome SSConfig : My collection of hacks for SSHConfig">
+    <meta name="description" content="Awesome SSHConfig : My collection of hacks for SSHConfig">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Awesome SSConfig</title>
+    <title>Awesome SSHConfig</title>
   </head>
 
   <body>
@@ -18,7 +18,7 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/mgarces/awesome_sshconfig">View on GitHub</a>
 
-          <h1 id="project_title">Awesome SSConfig</h1>
+          <h1 id="project_title">Awesome SSHConfig</h1>
           <h2 id="project_tagline">My collection of hacks for SSHConfig</h2>
 
             <section id="downloads">
@@ -35,7 +35,7 @@
 <a id="awesome-sshconfig" class="anchor" href="#awesome-sshconfig" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/mgarces/awesome_sshconfig">Awesome <em>SSHConfig</em></a>
 </h1>
 
-<p>A curated list of awesome hacks for <a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config">SSH_Config</a>; for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to addapt this to Linux.</p>
+<p>A curated list of awesome hacks for <a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config">SSHConfig</a>; for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to addapt this to Linux.</p>
 
 <p>So far, here is what I have obtained:</p>
 
@@ -73,7 +73,7 @@ alias sshcompile="echo -n &gt;! ~/.ssh/config &amp;&amp; cat
 alias ssh="sshcompile &amp;&amp; ssh"
 </code></pre>
 
-<p>The last line is optional, you can comment it if you want to "compile" <em>SSHConfig</em> manually; leave it like this, if you want to "compile" SSConfig each time you connect to a host (recommended). <em>sshcompile</em> cleans the ~/.ssh/config, concatenates all the <em>.config</em> files inside the directory, and lastly, concatenates the <em>default</em> file to the end of the config; this way, you get your <em>SSHConfig</em> file all organized.</p>
+<p>The last line is optional, you can comment it if you want to "compile" <em>SSHConfig</em> manually; leave it like this, if you want to "compile" SSHConfig each time you connect to a host (recommended). <em>sshcompile</em> cleans the ~/.ssh/config, concatenates all the <em>.config</em> files inside the directory, and lastly, concatenates the <em>default</em> file to the end of the config; this way, you get your <em>SSHConfig</em> file all organized.</p>
 
 <h2>
 <a id="a-sane-default-config-file" class="anchor" href="#a-sane-default-config-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>A sane <em>default</em> config file</h2>
@@ -226,6 +226,18 @@ Host insidehost2 j.insidehost2
 <p>Using my last scenario, where I need to connect to my work using an IPSec VPN, a need to access internal websites arrises a lot; also, sometimes I need to test some service running on a given port, and back in the days I did the naive approach to make a LocalForward, which works well for one or two ports, but as usual, if this grows, it get's out of control quickly.
 So, what does OpenSSH offer that can help us with this? <strong>DynamicForward</strong> for the rescue!</p>
 
+<p>Still on my last scenario, the <strong>JUMPHOST01</strong> host could reach everything inside my network, and DNS also works from that server, so I just have to tweak the <strong>Host</strong> entry:</p>
+
+<pre><code>Host jumphost
+  HostName jumphost01.example.com
+  DynamicForward :7777
+</code></pre>
+
+<p>Now just configure your system to point to a <a href="https://en.wikipedia.org/wiki/SOCKS"><em>SOCKS5</em></a> proxy, on <em>localhost:7777</em> and you are good to go! I usually use <a href="https://www.mozilla.org">Firefox</a>, because it allows me to configure proxy settings separated from the system.
+By now, any request you make to the browser, will effectively go through that host, even if it is a site with a different port, other then <em>HTTP</em>(80) or <em>HTTPS</em>(443).</p>
+
+<p>Yep, this is amazing, i know! :)</p>
+
 <h2>
 <a id="remote-copy" class="anchor" href="#remote-copy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remote copy</h2>
 
@@ -300,12 +312,22 @@ So, what does OpenSSH offer that can help us with this? <strong>DynamicForward</
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Awesome SSConfig maintained by <a href="https://github.com/mgarces">mgarces</a></p>
+        <p class="copyright">Awesome SSHConfig maintained by <a href="https://github.com/mgarces">mgarces</a></p>
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-2951053-10");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>
