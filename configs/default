@@ -1,0 +1,43 @@
+###################################################
+############ GLOBAL SETTINGS ######################
+###################################################
+# default config from 
+# https://github.com/mgarces/awesome_sshconfig
+###################################################
+
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/tmp/%r@%h:%p
+  IdentityFile ~/.ssh/keys/id_rsa
+  User mgarces
+  ForwardAgent yes
+  Port 22
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+  RemoteForward 55555 127.0.0.1:55555
+###################################################
+#This will force "User root"
+Host r.*
+  User root
+###################################################
+# EXAMPLE FORWARDS
+# Put remote service, on local port
+# EX: bring remote 8080 to local 8080
+#
+#      LocalForward localhost:8080 localhost:8080
+#
+# Put local service, on remote port
+# EX: push local port 22, to remote 2222
+#
+#
+#     RemoteForward localhost:2222 localhost:22
+#
+# Create a dynamic tunnel, can be used has
+# SOCKS5 proxy
+#
+#     DynamicForward localhost:7777
+#
+#
+# Now you can configure your browser to use
+# localhost:7777 SOCKS5, and your HTTP gateway is the
+# remote server
