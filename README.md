@@ -1,5 +1,5 @@
 # [Awesome *SSHConfig*](https://github.com/sshconfigio/awesome_sshconfig)
-A curated list of awesome hacks for [SSHConfig](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config); for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to adapt this to Linux.
+A curated list of awesome hacks for [SSHConfig](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config); for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but it should be straightforward to adapt this to Linux.
 
 So far, here is what I have obtained:
 - [Separated SSH config files](#separated-ssh-config-files)
@@ -33,10 +33,10 @@ alias sshcompile="echo -n >! ~/.ssh/config && cat
 alias ssh="sshcompile && ssh"
 ```
 
-The last line is optional, you can comment it if you want to "compile" _SSHConfig_ manually; leave it like this, if you want to "compile" SSHConfig each time you connect to a host (recommended). _sshcompile_ cleans the ~/.ssh/config, concatenates all the _.config_ files inside the directory, and lastly, concatenates the _default_ file to the end of the config; this way, you get your _SSHConfig_ file all organized.
+The last line is optional, you can comment it out if you want to "compile" _SSHConfig_ manually; Leave it like this, if you want to "compile" SSHConfig each time you connect to a host (recommended). _sshcompile_ cleans the ~/.ssh/config, concatenates all the _.config_ files inside the directory, and lastly, concatenates the _default_ file to the end of the config; this way, you get your _SSHConfig_ file all organized.
 
 ## A sane *default* config file
-A good place to start with your **SSHConfig** is to setup a global default file, which will be added at the end of the final config file. I usually set all the sane defaults there, and also give some examples in the form of commentaries, for future generations :). I have provided a good base in the _configs_ directory, so you can start using it right away.
+A good place to start with your **SSHConfig** is to setup a global default file, which will be added at the end of the final config file. I usually set all the same defaults there, and also give some examples in the form of comments, for future generations :). I have provided a good base in the _configs_ directory, so you can start using it right away.
 
 ```
 ###################################################
@@ -84,7 +84,7 @@ Host r.*
 # remote server
 ```
 
-I will explain what most of this stuff does in the next sections, for now, just notice the **Host *** declaration; this affects all hosts, and its overwritten if you declare it inside a given host or on the command line. For example, imagine if you are connecting to a server, and the user it's not _myuser_... you either can specify that on the command line using:
+I will explain what most of this stuff does in the next sections, for now, just notice the **Host *** declaration; this affects all hosts, and it's overwritten if you declare it inside a given host or on the command line. For example, imagine if you are connecting to a server and the user is not _myuser_... you either can specify that on the command line using:
 
 ```
 ssh anotheruser@remotehost
@@ -98,10 +98,10 @@ Host remotehost
   User anotherUser
 ```
 
-The default it's just that, something to fall back if you don't specify it.
+The default is just that, something to fall back if you don't specify it.
 
 ## ControMaster / ControlPath
-During a normal work day, you might connect to a lot of systems, and use public/private key authentication; this is fine, but most of the times, even though we have tools like _screen_ that allow us to have multiple terminals on the remote server, it's way faster to just open a new connection to the server. Each time you connect to a remote server, you end up creating a new connection and socket, and depending on the size and security of your keys, or if you are using password authentication (shame on you), it get's a little anoying to wait those seconds for the connection, or having to type, over and over again a password. Also, as we explain further down this document, when using Jump Hosts, if you do not have _ControlMaster_ on, you will have to authenticate each time on the _server-in-the-middle_ for your remote server; I can not emphasize how much boring this is. _SSHConfig_ manual pages tell us this:
+During a normal work day, you might connect to a lot of systems, and use public/private key authentication; This is fine, but most of the times, even though we have tools like _screen_ that allow us to have multiple terminals on the remote server, it's way faster to just open a new connection to the server. Each time you connect to a remote server, you end up creating a new connection and socket, and depending on the size and security of your keys, or if you are using password authentication (shame on you), it gets a little annoying to wait those seconds for the connection, or having to type, over and over again a password. Also, as we explain further down this document, when using Jump Hosts, if you do not have _ControlMaster_ on, you will have to authenticate each time on the _server-in-the-middle_ for your remote server; I can not emphasize more how boring this is. _SSHConfig_ manual pages tell us this:
 
 ```
 ControlMaster
@@ -125,16 +125,16 @@ I recommend creating a _tmp_ directory inside _~/.ssh/_ and store everything rel
   ControlPath ~/.ssh/tmp/%r@%h:%p
 ```
 
-From now on, each time you reconnect to a host, that you are already connected, _ControlMaster_ will share the same connection, no matter how many times you use this (which can be a lot, when you are using [JumpHosts](#jump-hosts)).
+From now on, each time you reconnect to a host, that you are already connected to, _ControlMaster_ will share the same connection, no matter how many times you use this (which can be a lot, when you are using [JumpHosts](#jump-hosts)).
 
 ## PKI Authentication
-authentication without passwords, using strong public/private keys
+Authentication without passwords, using strong public/private keys.
 
 ## Tunnels
-exposing remote and local ports
+Exposing remote and local ports.
 
 ## Jump Hosts
-Imagine this scenario: I use a IPSec VPN connection to my work, and the security guys are not very fond for SSH, but I ended up convincing them to allow me, at least, to connect to one host, which has access to all the other hosts in the network, or, at least some of them; I have disallowed passwords, and I'm using a combination of PKI with One Time Password (using [Google Auth](https://github.com/google/google-authenticator)).
+Imagine this scenario: I use a IPSec VPN connection to my work, and the security guys are not very fond of SSH. However I ended up convincing them to allow me, at least, to connect to one host, which has access to all the other hosts in the network, or, at least some of them; I have disallowed passwords, and I'm using a combination of PKI with One Time Password (using [Google Auth](https://github.com/google/google-authenticator)).
 
 I could access my servers the usual (newbie) way, in where I access the **JUMPHOST** and then I access the required server, example:
 
@@ -147,7 +147,7 @@ ssh insidehost
 
 This is fun and all, and it works, but it gets boring quick! At least we are already using ControlMaster, so we only authenticate the first time (remember, here I am using PKI+OTP).
 
-But there is a better, cleaner solution! First, lets create a entry, for the **INSIDEHOST01** and for a second host, let's call it **INSIDEHOST02**:
+But there is a better, cleaner solution! First, let's create an entry, for the **INSIDEHOST01** and for a second host, let's call it **INSIDEHOST02**:
 
 ```
 Host insidehost1 j.insidehost1
@@ -157,7 +157,7 @@ Host insidehost2 j.insidehost2
   HostName insidehost02.example.com
 ```
 
-I could setup four different entries for these two hosts, one for the normal connection, another for using the jump host, but I use a trick, where I can specifie multiple alias in the **Host** parameter; this way, I can create a default entry for the **j.hosts** entry, like we did on the **Host ***. Just add this inside _default_ config file, or create a _JUMP.config_ inside the _configs_ directory:
+I could setup four different entries for these two hosts, one for the normal connection, another for using the jump host, but I use a trick, where I can specify multiple alias in the **Host** parameter; this way, I can create a default entry for the **j.hosts** entry, like we did on the **Host ***. Just add this inside _default_ config file, or create a _JUMP.config_ inside the _configs_ directory:
 
 ```
   Host jumphost
@@ -167,7 +167,7 @@ I could setup four different entries for these two hosts, one for the normal con
   ProxyCommand ssh jumphost nc -w 120 %h %p
 ```
 
-You can create several different jump hosts, depending on context, and you can also jump more then one server, for example, if you need to get to _insidehost1_ to reach _insidehost2_, just declare:
+You can create several different jump hosts, depending on context, and you can also jump more than one server, for example, if you need to get to _insidehost1_ to reach _insidehost2_, just declare:
 
 ```
 Host insidehost2
@@ -180,7 +180,7 @@ This way, you first SSH to JUMPHOST01, then to INSIDEHOST01, and finally to INSI
 Note that any option you give to a jumphost, will be set on the final destination, for example, a port forwarding; it will no be forwarded inside the first jumphost.
 
 ## SOCKS Proxy
-Using my last scenario, where I need to connect to my work using an IPSec VPN, a need to access internal websites arrises a lot; also, sometimes I need to test some service running on a given port, and back in the days I did the naive approach to make a LocalForward, which works well for one or two ports, but as usual, if this grows, it get's out of control quickly.
+Using my last scenario, where I need to connect to my work using an IPSec VPN, a need to access internal websites arrises a lot; also, sometimes I need to test some service running on a given port, and back in the days I did the naive approach to make a LocalForward, which works well for one or two ports, but as usual, if this grows, it gets out of control quickly.
 So, what does OpenSSH offer that can help us with this? __DynamicForward__ for the rescue!
 
 Still on my last scenario, the __JUMPHOST01__ host could reach everything inside my network, and DNS also works from that server, so I just have to tweak the __Host__ entry:
@@ -189,10 +189,10 @@ Host jumphost
   HostName jumphost01.example.com
   DynamicForward :7777
 ```
-Now just configure your system to point to a [_SOCKS5_](https://en.wikipedia.org/wiki/SOCKS) proxy, on _localhost:7777_ and you are good to go! I usually use [Firefox](https://www.mozilla.org), because it allows me to configure proxy settings separated from the system.
+Now just configure your system to point to a [_SOCKS5_](https://en.wikipedia.org/wiki/SOCKS) proxy, on _localhost:7777_ and you are good to go! I usually use [Firefox](https://www.mozilla.org/en-US/firefox/products/), because it allows me to configure proxy settings separated from the system.
 By now, any request you make to the browser, will effectively go through that host, even if it is a site with a different port, other then _HTTP_(80) or _HTTPS_(443).
 
-Yep, this is amazing, i know! :)
+Yep, this is amazing, I know! :)
 
 ## Remote copy
 One thing I use a lot on the command line (on MacOS X) is [pbcopy](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/pbcopy.1.html). If I need to copy the contents of some file, let's say it, a log file, I can do:
@@ -203,7 +203,7 @@ cat example.log | pbcopy
 
 and the contents of _example.log_ will be on my clipboard, ready to be pasted somewhere, like in a [Gist](https://gist.github.com/).
 
-This works great, but only on _localhost_, and most of the time I am working on remote servers, so it would be great to have **pbcopy** at my hands on those servers; I usally just select with the mouse some text, but if the text is very big, I have to copy the file to localhost, and use **pbcopy**, or if my user has permissions to access that file, I end up doing:
+This works great, but only on _localhost_, and most of the time I am working on remote servers, so it would be great to have **pbcopy** at my hands on those servers; I usually just select with the mouse some text, but if the text is very big, I have to copy the file to localhost, and use **pbcopy**, or if my user has permissions to access that file, I end up doing:
 
 ```
 ssh somehost cat /var/log/example.log | pbcopy
@@ -249,12 +249,12 @@ launchctl load ~/Library/LaunchAgents/pbcopy.plist
 Now you have the pbcopy listener running, no need to use a _screen_ session.
 
 ### netcat VS SSH
-You should however be aware of something... by using the netcat method, any user on the same server you are, could connect to port 55555 and inject stuff on your local pasteboard; if you live well with this possibility, use netcat, if not, use my first approach, exploiting SSH _RemoteForward._
+Please notice: by using the netcat method, any user on the same server as you could connect to port 55555 and inject stuff on your local pasteboard; if you can live well with this possibility, use netcat, if not, use my first approach, exploiting SSH _RemoteForward._
 
 ## Forward Agent
-holding your keys to reuse
+Holding your keys to reuse
 
 ## Keep Alive
-..so your conection is not dropped!
+... so your connection is not dropped!
 
 ## Default user defined by context
