@@ -1,5 +1,5 @@
 # [Awesome *SSHConfig*](https://github.com/sshconfigio/awesome_sshconfig)
-A curated list of awesome hacks for [SSHConfig](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config); for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to addapt this to Linux.
+A curated list of awesome hacks for [SSHConfig](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config); for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to adapt this to Linux.
 
 So far, here is what I have obtained:
 - [Separated SSH config files](#separated-ssh-config-files)
@@ -125,7 +125,7 @@ I recommend creating a _tmp_ directory inside _~/.ssh/_ and store everything rel
   ControlPath ~/.ssh/tmp/%r@%h:%p
 ```
 
-From now on, each time you reconnect to a host, that you are already connected, _ControlMaster_ will share the same connection, no matter how many times you use this (whick can be a lot, when you are using [JumpHosts](#jump-hosts)).
+From now on, each time you reconnect to a host, that you are already connected, _ControlMaster_ will share the same connection, no matter how many times you use this (which can be a lot, when you are using [JumpHosts](#jump-hosts)).
 
 ## PKI Authentication
 authentication without passwords, using strong public/private keys
