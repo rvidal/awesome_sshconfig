@@ -1,4 +1,4 @@
-# [Awesome *SSHConfig*](https://github.com/mgarces/awesome_sshconfig)
+# [Awesome *SSHConfig*](https://github.com/sshconfigio/awesome_sshconfig)
 A curated list of awesome hacks for [SSHConfig](http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man5/ssh_config.5?query=ssh_config); for several years I've improved the use of my ssh_config file, and here I share everything I have obtained so far; I use this on Mac OS X, but should be straighforward to addapt this to Linux.
 
 So far, here is what I have obtained:
@@ -43,7 +43,7 @@ A good place to start with your **SSHConfig** is to setup a global default file,
 ############ GLOBAL SETTINGS ######################
 ###################################################
 # default config from
-# https://github.com/mgarces/awesome_sshconfig
+# https://github.com/sshconfigio/awesome_sshconfig
 ###################################################
 
 Host *
@@ -240,7 +240,7 @@ And thats it! Next time, you are on remote server you can use _pbcopy_ as you wo
 ### A better way to _daemonize_ pbcopy
 By now you should get the concept of _daemonizing_ pbcopy; if you are using Linux, I will add a better way to do this later. If you are like me, and are using MacOS X, there is a better way to achieve a pbcopy _daemon_ and it's using the built in [launchd](https://en.wikipedia.org/wiki/Launchd).
 
-Simply add the [provided](https://github.com/mgarces/awesome_sshconfig/blob/master/misc/pbcopy.plist) _launchd_ script to _~/Library/LaunchAgents/pbcopy.plist_ and run:
+Simply add the [provided](https://github.com/sshconfigio/awesome_sshconfig/blob/master/misc/pbcopy.plist) _launchd_ script to _~/Library/LaunchAgents/pbcopy.plist_ and run:
 
 ```
 launchctl load ~/Library/LaunchAgents/pbcopy.plist
